@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WakefulWork</string>
+    <string name="prompt">Select Polling Interval (in seconds):</string>
+    <string name="button_reschedule">Reschedule Worker</string>
+</resources>
