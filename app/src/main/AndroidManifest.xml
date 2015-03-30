@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.wakefulwork" >
 
+    <!-- Required for persisting alarms/jobs -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
@@ -18,12 +19,17 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmEventReceiver" />
+        <!-- Listen for alarm events -->
+        <receiver android:name=".AlarmEventReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".AlarmEventService" />
 
+        <!-- Handle scheduled jobs -->
         <service android:name=".ScheduledJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <service android:name=".AlarmEventService" />
     </application>
-
 </manifest>

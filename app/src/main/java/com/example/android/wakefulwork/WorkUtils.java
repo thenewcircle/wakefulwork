@@ -18,7 +18,8 @@ public class WorkUtils {
 
     //Handler for scheduling alarms on older platforms
     public static void scheduleWorkLegacy(Context context, long intervalMillis) {
-        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        AlarmManager manager =
+                (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         Intent broadcast = new Intent(context, AlarmEventReceiver.class);
         PendingIntent trigger = PendingIntent.getBroadcast(context, 0, broadcast, 0);
@@ -41,7 +42,8 @@ public class WorkUtils {
     //Handler for scheduling jobs on Lollipop+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void scheduleWorkLollipop(Context context, long intervalMillis) {
-        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        JobScheduler jobScheduler =
+                (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
 
         if (intervalMillis == 0) {
             //Cancel the periodic job
@@ -49,7 +51,8 @@ public class WorkUtils {
             Log.d(TAG, "Canceling periodic job");
         } else {
             JobInfo job = new JobInfo.Builder(WORK_JOB_ID,
-                    new ComponentName(context.getPackageName(), ScheduledJobService.class.getName()))
+                    new ComponentName(context.getPackageName(),
+                            ScheduledJobService.class.getName()))
                     //Let the framework reschedule our job on device reboots
                     .setPersisted(true)
                     //Set the trigger interval

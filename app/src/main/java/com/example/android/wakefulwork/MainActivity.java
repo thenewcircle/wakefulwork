@@ -14,7 +14,8 @@ import android.widget.Spinner;
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final String KEY_INDEX = "selectedIndex";
+    public static final String KEY_INTERVAL = "selectedInterval";
+    public static final String KEY_INDEX = "selectedIndex";
 
     private static final String[] CHOICES = {
             "Disabled",
@@ -46,7 +47,8 @@ public class MainActivity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
                 android.R.layout.simple_spinner_item, CHOICES);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
         mIntervalSpinner.setAdapter(adapter);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -61,6 +63,7 @@ public class MainActivity extends ActionBarActivity {
         //Persist the current choice
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.edit().putInt(KEY_INDEX, selectedIndex)
+                .putLong(KEY_INTERVAL, selectedInterval)
                 .apply();
 
         //Schedule the periodic work
