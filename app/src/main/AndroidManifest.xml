@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.wakefulwork" >
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- Required for persisting alarms/jobs -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
